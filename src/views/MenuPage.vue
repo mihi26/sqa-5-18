@@ -1,8 +1,16 @@
 <template>
   <div class="menu-page">
-    <div class="welcome-section">Xin chafo zzz</div>
+    <div class="welcome-section">
+      <div class="username">Xin chao Mehe</div>
+      <div class="change-password">Doi mat khau</div>
+    </div>
     <div class="menu-list-wrapper">
-      <button class="menu-wrapper" v-for="option in menuOptions" :key="option.id">
+      <button
+        class="menu-wrapper"
+        v-for="option in menuOptions"
+        :key="option.id"
+        @click="handleOnClick(option.type)"
+      >
         {{ option.title.toUpperCase() }}
       </button>
     </div>
@@ -31,6 +39,15 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    handleOnClick(type) {
+      if (type == 'register') {
+        this.$router.push({
+          name: 'RegisterTimetable'
+        })
+      }
+    }
   }
 }
 </script>
@@ -38,17 +55,21 @@ export default {
 .menu-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 30px;
   height: 100%;
+
+  .welcome-section {
+    margin-left: auto;
+  }
 
   .menu-list-wrapper {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 
     .menu-wrapper {
-      min-width: 300px;
+      width: 300px;
       border-radius: 4px;
       min-height: 45px;
       cursor: pointer;

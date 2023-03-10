@@ -1,24 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginView from '../views/LoginView.vue'
 import MainPage from '../views/MainPage.vue'
-import MenuPage from '../views/MenuPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'MainPage',
+      name: 'Main	Page',
       component: MainPage,
       children: [
         {
           path: '/',
           name: 'LoginView',
-          component: LoginView
+          component: () => import('../views/LoginView.vue')
         },
         {
           path: '/menu',
           name: 'MenuPage',
-          component: MenuPage
+          component: () => import('../views/MenuPage.vue')
+        },
+        {
+          path: '/menu/register',
+          name: 'RegisterTimetable',
+          component: () => import('../views/RegisterTimetable.vue')
         }
       ]
     }
