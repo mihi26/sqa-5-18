@@ -26,7 +26,6 @@ const handleOnSubmit = () => {
     </div>
     <div class="button-wrapper">
       <button class="submit-button" @click="handleOnSubmit">LOGIN</button>
-      <div class="forgot-password">Forgot password?</div>
     </div>
   </div>
 </template>

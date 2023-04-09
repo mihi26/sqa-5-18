@@ -1,22 +1,15 @@
 <template>
   <div class="menu-page">
-    <div class="welcome-section">
-      <div class="username">Xin chao Mehe</div>
-      <div class="change-password">Doi mat khau</div>
-    </div>
-    <div class="menu-list-wrapper">
-      <button
-        class="menu-wrapper"
-        v-for="option in menuOptions"
-        :key="option.id"
-        @click="handleOnClick(option.type)"
-      >
-        {{ option.title.toUpperCase() }}
-      </button>
+    <Sidebar />
+    <div class="menu-page-content">
+      <MenuHeader />
+      <RouterView></RouterView>
     </div>
   </div>
 </template>
 <script>
+import Sidebar from '../components/MenuSidebar.vue'
+import MenuHeader from '../components/MenuHeader.vue'
 export default {
   name: 'MenuPage',
   data() {
@@ -48,33 +41,20 @@ export default {
         })
       }
     }
-  }
+  },
+  components: { Sidebar, MenuHeader }
 }
 </script>
 <style lang="scss" scoped>
 .menu-page {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  height: 100%;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 
-  .welcome-section {
-    margin-left: auto;
-  }
-
-  .menu-list-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-
-    .menu-wrapper {
-      width: 300px;
-      border-radius: 4px;
-      min-height: 45px;
-      cursor: pointer;
-      font-weight: 600;
-    }
+  .menu-page-content {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

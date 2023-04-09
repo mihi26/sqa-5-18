@@ -87,15 +87,15 @@ table {
   }
 
   th {
-    min-width: 185px;
-    min-height: 43px;
+    min-width: 10px;
+    min-height: 80px;
     padding: 12px;
     text-align: left;
   }
 
   td {
-    min-width: 185px;
-    height: 100px;
+    min-width: 10px;
+    height: 80px;
     padding: 12px;
   }
 }

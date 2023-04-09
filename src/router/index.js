@@ -16,12 +16,29 @@ const router = createRouter({
         {
           path: '/menu',
           name: 'MenuPage',
-          component: () => import('../views/MenuPage.vue')
-        },
-        {
-          path: '/menu/register',
-          name: 'RegisterTimetable',
-          component: () => import('../views/RegisterTimetable.vue')
+          component: () => import('../views/MenuPage.vue'),
+          redirect: () => {
+            return {
+              name: 'ScheduleRegister'
+            }
+          },
+          children: [
+            {
+              path: 'schedule-register',
+              name: 'ScheduleRegister',
+              component: () => import('../views/ScheduleRegister.vue')
+            },
+            {
+              path: 'schedule-edit',
+              name: 'ScheduleEdit',
+              component: () => import('../views/ScheduleEdit.vue')
+            },
+            {
+              path: 'schedule-view',
+              name: 'ScheduleView',
+              component: () => import('../views/ScheduleView.vue')
+            }
+          ]
         }
       ]
     }

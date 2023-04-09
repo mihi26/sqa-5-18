@@ -6,8 +6,8 @@
 <script></script>
 <style lang="scss" scoped>
 .main-body {
-  height: 100%;
-  background-color: black;
-  font-size: 14px;
+  height: 100vh;
+  width: 100vw;
+  background-color: #e7e7e3;
 }
 </style>
