@@ -1,19 +1,33 @@
 <template>
   <div class="header-wrapper">
     <div class="header-title-wrapper">
-      <div class="user-greet">Xin chào Nguyễn Văn A</div>
-      <div class="logout-button">Đăng xuất</div>
+      <div class="user-greet">Xin chào {{ userName }}</div>
+      <div class="logout-button" @click="onLogOut">Đăng xuất</div>
     </div>
   </div>
 </template>
 <script>
+import { useAuthStore } from '../stores/auth'
 export default {
-  name: 'MenuHeader'
+  name: 'MenuHeader',
+  computed: {
+    userName() {
+      return useAuthStore().getName
+    }
+  },
+  methods: {
+    onLogOut() {
+      useAuthStore().clearUserAuth()
+      this.$router.push({
+        name: 'LoginView'
+      })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
 .header-wrapper {
-  padding: 32px 60px;
+  padding: 28px 28px;
   width: 100%;
   min-height: 96px;
   background-color: #fafafa;
@@ -21,6 +35,9 @@ export default {
   align-items: center;
   justify-content: flex-end;
   border-bottom: 1px solid rgba(35, 35, 33, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 2;
   .header-title-wrapper {
     display: flex;
     align-items: center;

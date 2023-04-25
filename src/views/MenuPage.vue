@@ -3,7 +3,9 @@
     <Sidebar />
     <div class="menu-page-content">
       <MenuHeader />
-      <RouterView></RouterView>
+      <div class="content-wrapper">
+        <RouterView></RouterView>
+      </div>
     </div>
   </div>
 </template>
@@ -48,13 +50,19 @@ export default {
 <style lang="scss" scoped>
 .menu-page {
   display: flex;
-  position: relative;
   height: 100vh;
   width: 100vw;
 
   .menu-page-content {
     width: 100%;
     height: 100%;
+    overflow: auto;
+
+    .content-wrapper {
+      padding: 24px;
+      background-color: #e7e7e3;
+      min-height: 525px;
+    }
   }
 }
 </style>

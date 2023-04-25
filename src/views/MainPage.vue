@@ -8,6 +8,5 @@
 .main-body {
   height: 100vh;
   width: 100vw;
-  background-color: #e7e7e3;
 }
 </style>

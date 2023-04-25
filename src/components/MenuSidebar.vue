@@ -31,13 +31,13 @@ export default {
           label: 'XEM LỊCH GIẢNG DẠY',
           type: 'view',
           routeName: 'ScheduleView'
-        },
-        {
-          id: 2,
-          label: 'SỬA LỊCH GIẢNG DẠY',
-          type: 'edit',
-          routeName: 'ScheduleEdit'
         }
+        // {
+        //   id: 2,
+        //   label: 'SỬA LỊCH GIẢNG DẠY',
+        //   type: 'edit',
+        //   routeName: 'ScheduleEdit'
+        // }
       ]
     }
   },
@@ -54,11 +54,8 @@ export default {
 .sidebar-container {
   padding: 32px 24px;
   height: 100%;
-  min-width: 260px;
+  width: 300px;
   background: #fafafa;
-  position: sticky;
-  top: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(35, 35, 33, 0.2);

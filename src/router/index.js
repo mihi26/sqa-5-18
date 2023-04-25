@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainPage from '../views/MainPage.vue'
+import { useAuthStore } from '../stores/auth'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'Main	Page',
-      component: MainPage,
       children: [
         {
-          path: '/',
+          path: '/login',
           name: 'LoginView',
           component: () => import('../views/LoginView.vue')
         },
@@ -28,21 +28,33 @@ const router = createRouter({
               name: 'ScheduleRegister',
               component: () => import('../views/ScheduleRegister.vue')
             },
-            {
-              path: 'schedule-edit',
-              name: 'ScheduleEdit',
-              component: () => import('../views/ScheduleEdit.vue')
-            },
+            // {
+            //   path: 'schedule-edit',
+            //   name: 'ScheduleEdit',
+            //   component: () => import('../views/ScheduleEdit.vue')
+            // },
             {
               path: 'schedule-view',
               name: 'ScheduleView',
               component: () => import('../views/ScheduleView.vue')
             }
           ]
+        },
+        {
+          path: '*',
+          name: 'NotFound',
+          component: () => import('../views/NotFoundView.vue')
         }
       ]
     }
   ]
 })
 
+router.beforeEach((to) => {
+  if (!useAuthStore().getToken && to.name != 'LoginView') {
+    return {
+      name: 'LoginView'
+    }
+  }
+})
 export default router

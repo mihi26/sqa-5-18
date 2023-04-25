@@ -1,17 +1,26 @@
 <template>
   <div
-    class="input-wrapper"
+    class="select-input-wrapper"
     @click="() => (isShowDropdown = !isShowDropdown)"
     v-click-outside="handleClickOutside"
   >
     <div class="title-input-wrapper">
-      <div class="title" v-if="title.length">{{ title }}</div>
-      <input v-model="inputValue.name" :placeholder="placeholder" class="input-style" readonly />
+      <input
+        v-model="inputValue[keyName]"
+        :placeholder="placeholder"
+        class="input-style"
+        readonly
+      />
     </div>
-    <unicon name="angle-down" fill="#fff" width="20px" height="20px" />
+    <unicon name="angle-down" fill="#231321" width="24px" height="24px" />
     <div class="input-dropdown" v-if="isShowDropdown">
-      <div class="dropdown-item" v-for="item in options" :key="item.id" @click="onChooseItem(item)">
-        {{ item.name }}
+      <div
+        class="dropdown-item"
+        v-for="item in options"
+        :key="item[keyId]"
+        @click="onChooseItem(item[keyId])"
+      >
+        {{ item[keyName] }}
       </div>
     </div>
   </div>
@@ -29,9 +38,17 @@ export default {
       type: Array,
       required: true
     },
-    title: {
+    keyName: {
       type: String,
-      default: ''
+      default: 'name'
+    },
+    keyId: {
+      type: String,
+      default: 'id'
+    },
+    value: {
+      type: Object,
+      required: true
     }
   },
   directives: {
@@ -47,22 +64,28 @@ export default {
     handleClickOutside() {
       this.isShowDropdown = false
     },
-    onChooseItem(val) {
-      this.inputValue = val
+    onChooseItem(id) {
+      this.$emit('onChooseItem', id)
     }
   },
-  watch: {}
+  watch: {
+    value: {
+      handler(val) {
+        this.inputValue = val
+      }
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
-.input-wrapper {
+.select-input-wrapper {
   width: 300px;
-  min-height: 40px;
-  border: 1px solid #fff;
+  height: 40px;
+  border: 1px solid #232321;
   display: flex;
   align-items: center;
-  padding: 12px 12px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 8px;
   position: relative;
   cursor: pointer;
 
@@ -82,7 +105,7 @@ export default {
     outline: none;
     line-height: 20px;
     background: transparent;
-    color: #fff;
+    color: #231321;
     border: none;
   }
   .input-dropdown {
@@ -91,11 +114,29 @@ export default {
     left: 0;
     z-index: 2;
     width: inherit;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #231321;
 
     .dropdown-item {
       min-height: 40px;
       display: flex;
       align-items: center;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      &:hover {
+        background: #231321;
+        color: #fff;
+      }
+
+      &:first-child {
+        border-radius: 8px 8px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 8px 8px;
+      }
     }
   }
 }
