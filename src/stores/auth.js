@@ -17,11 +17,15 @@ export const useAuthStore = defineStore('auth', {
       this.username = val?.username
       this.name = val?.name
       this.token = val?.token
+      localStorage.setItem('username', this.username)
+      localStorage.setItem('name', this.name)
+      localStorage.setItem('token', this.token)
     },
     clearUserAuth() {
       this.username = ''
       this.name = ''
       this.token = ''
+      localStorage.clear()
     }
   }
 })

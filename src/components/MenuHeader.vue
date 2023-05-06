@@ -12,12 +12,14 @@ export default {
   name: 'MenuHeader',
   computed: {
     userName() {
-      return useAuthStore().getName
+      return localStorage.getItem('name')
     }
   },
   methods: {
     onLogOut() {
       useAuthStore().clearUserAuth()
+      localStorage.removeItem('token')
+      localStorage.removeItem('username')
       this.$router.push({
         name: 'LoginView'
       })

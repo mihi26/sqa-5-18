@@ -26,7 +26,7 @@ const api = (config) => ({
     })
   },
   getTeacherSchedule: () => {
-    return config('get', `api/v1/register/${useAuthStore().getUserName}`, null, {
+    return config('get', `api/v1/register/${localStorage.getItem('username')}`, null, {
       Authorization: `Bearer ${useAuthStore().getToken}`,
       'Access-Control-Allow-Origin': '*'
     })

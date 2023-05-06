@@ -51,7 +51,7 @@ export default {
           })
         }
         for (let i = 0; i < res.data.length; i++) {
-          let subjectResponse = await api('getSubjectNameFromCode', res.data[i].teacherCode)
+          let subjectResponse = await api('getSubjectNameFromCode', res.data[i].subjectCode)
           if (subjectResponse) {
             let detailSchedule = {
               subjectName: subjectResponse.data.name,

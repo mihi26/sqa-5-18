@@ -51,7 +51,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  if (!useAuthStore().getToken && to.name != 'LoginView') {
+  if (!localStorage.getItem('token') && to.name != 'LoginView') {
     return {
       name: 'LoginView'
     }
